@@ -1,16 +1,31 @@
 // ==UserScript==
-// @name         Crossword Answers Revealer
+// @name         Crossword Answers Revealer with Redirect
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.5
 // @description  Reveals the answers for a crossword puzzle
 // @author       Lil Ami
-// @match        www.crosswordlabs.com/embed/*
-// @match        *://crosswordlabs.com/embed/*
+// @match        *://crosswordlabs.com/*
 // @grant        none
 // ==/UserScript==
 
 (function() {
     'use strict';
+
+    function getCrosswordName() {
+        var match = window.location.href.match(/\/view\/([^/]+)/);
+        return match ? match[1] : null;
+    }
+
+    function redirectEmbedPage() {
+        var crosswordName = getCrosswordName();
+        if (crosswordName) {
+            window.location.href = "https://crosswordlabs.com/embed/" + crosswordName;
+        }
+    }
+
+    if (window.location.href.includes("/view/")) {
+        redirectEmbedPage();
+    }
 
     var menuHTML = `
         <div id="crosswordMenu" style="position: fixed; top: 50px; left: 50px; background-color: #4a69bb; border: 1px solid #6b7abb; border-radius: 10px; padding: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); z-index: 9999;">
