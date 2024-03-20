@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Reveals the answers for a crossword puzzle
-// @author       Lil ami
+// @author       Lil Ami
 // @match        www.crosswordlabs.com/embed/*
 // @match        *://crosswordlabs.com/embed/*
 // @grant        none
@@ -21,20 +21,6 @@
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', menuHTML);
-
-    var style = document.createElement('style');
-    style.innerHTML = `
-        #crosswordMenu {
-            cursor: move;
-        }
-        #answersDisplay {
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-    `;
-  document.body.insertAdjacentHTML('beforeend', menuHTML);
 
     var style = document.createElement('style');
     style.innerHTML = `
